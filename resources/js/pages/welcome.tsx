@@ -1,5 +1,9 @@
 // src/pages/Home.jsx
+import { useState } from "react";
+
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const showTestimonial = (slideNumber: number) => {
     // Hide all slides
     document.querySelectorAll('.testimonial-slide').forEach(slide => {
@@ -24,12 +28,10 @@ export default function Home() {
         targetDot.classList.remove('bg-gray-300');
     }
 };
-
-
     return (
       <div className="min-h-screen bg-gray-50">
         {/* Navbar */}
-        <header className="flex justify-between items-center px-6 sm:px-8 py-4 sm:py-6 bg-[#EEF5F8] shadow-sm">
+        <header className="flex justify-between items-center px-6 sm:px-8 py-4 sm:py-6 bg-[#EEF5F8] shadow-sm relative">
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img
@@ -42,75 +44,96 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* Navbar */}
+          {/* Navbar Desktop */}
           <nav className="hidden md:flex gap-6 lg:gap-8">
             <a
               href="#home"
               className="relative text-gray-500 hover:text-[#519DBC] font-medium cursor-pointer 
-                        after:content-[''] after:absolute after:-top-2 after:left-0 
-                        after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              after:content-[''] after:absolute after:-top-2 after:left-0 
+              after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
             >
               HOME
             </a>
             <a
               href="#about"
               className="relative text-gray-500 hover:text-[#519DBC] font-medium cursor-pointer 
-                        after:content-[''] after:absolute after:-top-2 after:left-0 
-                        after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              after:content-[''] after:absolute after:-top-2 after:left-0 
+              after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
             >
               ABOUT
             </a>
             <a
               href="#services"
               className="relative text-gray-500 hover:text-[#519DBC] font-medium cursor-pointer 
-                        after:content-[''] after:absolute after:-top-2 after:left-0 
-                        after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              after:content-[''] after:absolute after:-top-2 after:left-0 
+              after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
             >
               SERVICE
             </a>
             <a
               href="#pages"
-              className="relative text-gray-500 hover:text-[#519DBC] font-medium cursor-pointer 
-                        after:content-[''] after:absolute after:-top-2 after:left-0 
-                        after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('pages')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              className="relative flex items-center gap-1 text-gray-500 hover:text-[#519DBC] font-medium cursor-pointer 
+              after:content-[''] after:absolute after:-top-2 after:left-0 
+              after:w-full after:h-[2px] after:bg-[#519DBC] after:opacity-0 hover:after:opacity-100 transition-all"
             >
               PAGES
+              <svg
+                className="w-3 h-3 ml-1 text-gray-500 transition-colors"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.086l3.71-3.856a.75.75 0 111.08 1.04l-4.25 4.417a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </a>
           </nav>
 
-          {/* Icon kanan */}
+          {/* Mobile Buttons */}
           <div className="flex items-center gap-4">
-            {/* Phone Icon - matching Figma design */}
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#519DBC] shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-              <svg className="w-6 h-6 text-[#519DBC]" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            {/* Phone Icon */}
+            <div className="hidden md:flex w-12 h-12 bg-white rounded-full items-center justify-center border-2 border-[#519DBC] shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+              <svg
+                className="w-6 h-6 text-[#519DBC]"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
             </div>
-            
-            {/* Mobile menu button */}
-            <button className="md:hidden w-10 h-10 bg-white rounded-full flex flex-col justify-center items-center gap-1 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+
+            {/* Hamburger Button */}
+            <button
+              className="md:hidden w-10 h-10 bg-white rounded-full flex flex-col justify-center items-center gap-1 border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
               <span className="w-4 h-0.5 bg-[#519DBC] rounded-full"></span>
               <span className="w-4 h-0.5 bg-[#519DBC] rounded-full"></span>
               <span className="w-4 h-0.5 bg-[#519DBC] rounded-full"></span>
             </button>
           </div>
+
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <div className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col items-center py-6 gap-4 md:hidden z-50">
+              <a href="#home" className="text-gray-600 hover:text-[#519DBC]">
+                HOME
+              </a>
+              <a href="#about" className="text-gray-600 hover:text-[#519DBC]">
+                ABOUT
+              </a>
+              <a href="#services" className="text-gray-600 hover:text-[#519DBC]">
+                SERVICE
+              </a>
+              <a href="#pages" className="text-gray-600 hover:text-[#519DBC]">
+                PAGES
+              </a>
+            </div>
+          )}
         </header>
+        
         {/* Hero Section */}
         <section
           id="home"
