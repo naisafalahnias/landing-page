@@ -849,7 +849,6 @@ export default function Home() {
               <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                 {/* Social Media */}
                 <div className="flex items-center gap-4">
-                  <span className="text-white/80 text-sm">Follow us:</span>
                   <div className="flex gap-3">
                     <a href="#" className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                       <span className="text-white text-sm font-bold">FB</span>
